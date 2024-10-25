@@ -2,21 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Clean') {
             steps {
-                echo 'Building..'
-                sh 'pwd'
-                sh 'ls -la'
+                echo 'Cleaning /target..'
+                sh 'mvn clean'
             }
         }
-        stage('Test') {
+        stage('Unit Tests') {
             steps {
-                echo 'Testing..'
+                echo 'Running Unit Tests..'
+                sh 'mvn test'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh 'mvn install spring-boot:run -DskipTests'
             }
         }
     }
