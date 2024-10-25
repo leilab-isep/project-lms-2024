@@ -26,5 +26,11 @@ pipeline {
                 sh 'docker build -t lms .'
             }
         }
+        stage('Build docker container') {
+            steps {
+                echo 'Building docker container....'
+                sh 'docker-compose up -d'
+            }
+        }
     }
 }
