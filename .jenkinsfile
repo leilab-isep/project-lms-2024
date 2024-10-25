@@ -20,10 +20,10 @@ pipeline {
                 sh 'mvn install'
             }
         }
-        stage('Publish') {
+        stage('Build docker image') {
             steps {
-                echo 'Publishing....'
-                sh 'java -jar target/*.jar'
+                echo 'Building docker image....'
+                sh 'docker build -t lms .'
             }
         }
     }
