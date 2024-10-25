@@ -17,7 +17,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'mvn install spring-boot:run -DskipTests'
+                sh 'mvn install'
+            }
+        }
+        stage('Publish') {
+            steps {
+                echo 'Publishing....'
+                sh 'java -jar target/*.jar'
             }
         }
     }
